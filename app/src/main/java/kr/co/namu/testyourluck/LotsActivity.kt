@@ -2,6 +2,7 @@ package kr.co.namu.testyourluck
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
@@ -11,6 +12,9 @@ class LotsActivity : AppCompatActivity() {
 
 //    제비 텍스트 뷰들을 담아둘 목록
     val luckList = ArrayList<TextView>()
+
+//    추첨 결과를 모아둘 목록 : true / 생존,  false : 꽝
+    val resultList = ArrayList<Boolean>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -114,6 +118,59 @@ class LotsActivity : AppCompatActivity() {
             unLuckyCountTxt.text = count.toString()
         }
 
+        testLuckBtn.setOnClickListener {
+//            제비뽑기 : 꽝 갯수 + 당첨 갯수 = 전체 인원수
+
+//            꽝 갯수 설정값 알아내기
+            var unLuckyCount = unLuckyCountTxt.text.toString().toInt()
+
+//            전체 인원수 알아내기
+            var totalCount = peopleCountTxt.text.toString().toInt()
+
+//            불변하는 전체 인원수 (반복에서 사용)
+            val totalCountCopy = totalCount
+
+//            전체 인원수 만큼 반복으로 제비뽑기
+
+            for (i in 0..totalCountCopy-1) {
+
+//                랜덤으로 꽝인지 / 생존인지
+//                생존 : 1, 꽝 : 2 => 꽝확률 2/3 => 0.75 (75%)
+
+//                Math.random() => 0~0.999999999 값이 랜덤으로 뜸.
+
+                val cutLine = unLuckyCount.toDouble() / totalCount.toDouble()
+
+                val randomVal = Math.random()
+
+                Log.d("랜덤값", randomVal.toString())
+                Log.d("컷트라인", cutLine.toString())
+                
+//                꽝으로 처리.
+                if (randomVal < cutLine) {
+                    resultList.add(false)
+                    Log.d("당첨결과", false.toString())
+//                  만약 꽝이뽑혔다면 꽝 갯수 하나 줄여주자.
+                    unLuckyCount--
+                }
+                else {
+//                    생존 처리
+                    resultList.add(true)
+                    Log.d("당첨결과", true.toString())
+                }
+
+//                한번 뽑고 나면 전체 갯수도 줄이자.
+                totalCount--
+            }
+
+//            최종 결과 확인
+            for (result in resultList) {
+                Log.d("추첨결과", result.toString())
+            }
+            Log.d("추첨결과", resultList.size.toString())
+
+
+        }
 
     }
 }
