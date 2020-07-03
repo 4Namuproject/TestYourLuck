@@ -10,10 +10,10 @@ import kotlinx.android.synthetic.main.activity_lots.*
 
 class LotsActivity : AppCompatActivity() {
 
-//    제비 텍스트 뷰들을 담아둘 목록
+    //    제비 텍스트 뷰들을 담아둘 목록
     val luckList = ArrayList<TextView>()
 
-//    추첨 결과를 모아둘 목록 : true / 생존,  false : 꽝
+    //    추첨 결과를 모아둘 목록 : true / 생존,  false : 꽝
     val resultList = ArrayList<Boolean>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -119,6 +119,10 @@ class LotsActivity : AppCompatActivity() {
         }
 
         testLuckBtn.setOnClickListener {
+
+//            기존 당첨 결과 전부 삭제
+            resultList.clear()
+
 //            제비뽑기 : 꽝 갯수 + 당첨 갯수 = 전체 인원수
 
 //            꽝 갯수 설정값 알아내기
@@ -145,7 +149,7 @@ class LotsActivity : AppCompatActivity() {
 
                 Log.d("랜덤값", randomVal.toString())
                 Log.d("컷트라인", cutLine.toString())
-                
+
 //                꽝으로 처리.
                 if (randomVal < cutLine) {
                     resultList.add(false)
@@ -164,8 +168,20 @@ class LotsActivity : AppCompatActivity() {
             }
 
 //            최종 결과 확인
-            for (result in resultList) {
-                Log.d("추첨결과", result.toString())
+            for (i in resultList.indices) {
+
+//                추첨결과 - Boolean
+                val result = resultList[i];
+//                변경해줄 텍스트뷰
+                val luckTxt = luckList[i];
+
+                if (result) {
+                    luckTxt.text = "생존!"
+                }
+                else {
+                    luckTxt.text = "꽝!"
+                }
+
             }
             Log.d("추첨결과", resultList.size.toString())
 
