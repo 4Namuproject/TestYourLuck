@@ -15,5 +15,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(myIntent)
         }
 
+        rpsBtn.setOnClickListener {
+            val myIntent = Intent(this, RockPaperScissorsActivity::class.java)
+            startActivity(myIntent)
+        }
+
     }
 }

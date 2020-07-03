@@ -29,7 +29,7 @@
         android:text="제비 뽑기" />
 
     <Button
-        android:id="@+id/rcpBtn"
+        android:id="@+id/rpsBtn"
         android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
