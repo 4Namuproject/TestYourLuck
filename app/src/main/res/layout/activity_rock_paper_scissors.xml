@@ -13,6 +13,7 @@
         android:id="@+id/cpuImg"
         android:layout_width="120dp"
         android:layout_height="120dp"
+        android:layout_marginBottom="15dp"
         android:src="@mipmap/ic_launcher" />
 
     <TextView
@@ -25,6 +26,13 @@
         android:layout_height="wrap_content"
         android:textSize="17sp"
         android:text="가위 / 바위 / 보 중 하나를 눌러주세요."/>
+
+    <ImageView
+        android:id="@+id/myImg"
+        android:layout_marginTop="15dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@mipmap/ic_launcher" />
 
 
     <LinearLayout

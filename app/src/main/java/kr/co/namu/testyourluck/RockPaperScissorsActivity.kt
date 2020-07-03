@@ -35,6 +35,9 @@ class RockPaperScissorsActivity : AppCompatActivity() {
 //            랜덤으로 뽑힌 그림을 띄워주기
             cpuImg.setImageResource(thisTimePick)
 
+//            내가 낸 것도 그림 띄워주기
+            myImg.setImageResource(imgList[0])
+
 
             cpuPick = randomNum
             getResultOfRPS(0)
@@ -45,6 +48,7 @@ class RockPaperScissorsActivity : AppCompatActivity() {
             val randomNum = (Math.random() * 3).toInt()
             val thisTimePick = imgList[randomNum]
             cpuImg.setImageResource(thisTimePick)
+            myImg.setImageResource(imgList[1])
 
 
             cpuPick = randomNum
@@ -56,6 +60,7 @@ class RockPaperScissorsActivity : AppCompatActivity() {
             val randomNum = (Math.random() * 3).toInt()
             val thisTimePick = imgList[randomNum]
             cpuImg.setImageResource(thisTimePick)
+            myImg.setImageResource(imgList[2])
 
             cpuPick = randomNum
             getResultOfRPS(2)
