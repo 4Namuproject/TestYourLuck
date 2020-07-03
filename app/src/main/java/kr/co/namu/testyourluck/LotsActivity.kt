@@ -90,12 +90,26 @@ class LotsActivity : AppCompatActivity() {
 
         unLuckyMinusBtn.setOnClickListener {
             var count = unLuckyCountTxt.text.toString().toInt()
+
+            if (count == 1) {
+                Toast.makeText(this, "최소 1개의 꽝은 필요합니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             count--
             unLuckyCountTxt.text = count.toString()
         }
 
         unLuckyPlusBtn.setOnClickListener {
             var count = unLuckyCountTxt.text.toString().toInt()
+
+            val peopleCount = peopleCountTxt.text.toString().toInt()
+
+            if (count == peopleCount - 1){
+                Toast.makeText(this, "꽝 갯수는 인원수와 같을 수 없습니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             count++
             unLuckyCountTxt.text = count.toString()
         }
