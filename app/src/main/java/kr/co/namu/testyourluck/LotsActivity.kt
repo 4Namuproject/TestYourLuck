@@ -185,6 +185,28 @@ class LotsActivity : AppCompatActivity() {
             }
             Log.d("추첨결과", resultList.size.toString())
 
+//            다시 하기 버튼만 누를수 있도록
+            replayBtn.isEnabled = true
+            testLuckBtn.isEnabled = false
+
+
+        }
+
+//        다시하기 버튼 처리
+        replayBtn.setOnClickListener {
+//            모든 텍스트뷰를 다시 1번 ~ 5번 으로 문구 변경
+
+            for (i in luckList.indices) {
+                val luckTxt = luckList[i]
+
+                luckTxt.text = "${i+1}번"
+
+            }
+
+//            다시 하기 비활성화
+            replayBtn.isEnabled = false
+//            제비 뽑기 버튼 활성화
+            testLuckBtn.isEnabled = true
 
         }
 
