@@ -31,5 +31,19 @@ class RockPaperScissorsActivity : AppCompatActivity() {
             cpuImg.setImageResource(thisTimePick)
 
         }
+
+        rockBtn.setOnClickListener {
+            val randomNum = (Math.random() * 3).toInt()
+            val thisTimePick = imgList[randomNum]
+            cpuImg.setImageResource(thisTimePick)
+
+        }
+
+        paperBtn.setOnClickListener {
+            val randomNum = (Math.random() * 3).toInt()
+            val thisTimePick = imgList[randomNum]
+            cpuImg.setImageResource(thisTimePick)
+        }
+
     }
 }

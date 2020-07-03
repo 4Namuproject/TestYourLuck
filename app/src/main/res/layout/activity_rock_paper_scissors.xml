@@ -41,11 +41,13 @@
             android:text="가위" />
 
         <Button
+            android:id="@+id/rockBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="바위" />
 
         <Button
+            android:id="@+id/paperBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="보" />
