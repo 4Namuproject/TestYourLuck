@@ -20,5 +20,12 @@ class MainActivity : AppCompatActivity() {
             startActivity(myIntent)
         }
 
+        baseballBtn.setOnClickListener {
+
+            val myIntent = Intent(this, BaseballActivity::class.java)
+            startActivity(myIntent)
+
+        }
+
     }
 }
