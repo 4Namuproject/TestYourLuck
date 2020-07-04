@@ -59,8 +59,32 @@ class BaseballActivity : AppCompatActivity() {
 //            리스트뷰를 바닥 (맨 마지막 채팅)으로 끌어내리기
             chattingListView.smoothScrollToPosition(chattingMessageList.size-1)
 
+//            컴퓨터 ?S ?B인지 답장하기
+            checkStrikeAndBall(input)
 
         }
+
+    }
+
+//    컴퓨터가 답장해주는 기능
+//    입력값을 알아야 ?S ?B인지 판단 가능.
+
+    fun checkStrikeAndBall(inputString : String) {
+
+//        정답 : 741 => 입력 : 145 1S 1B
+//        입력값을 숫자로 바꾸자.
+        val inputNum = inputString.toInt()
+
+//        숫자를 다시 배열로 쪼개주자.
+        val userNumbers = ArrayList<Int>()
+
+        userNumbers.add(inputNum / 100) // 100의 자리 ex. 745 / 100 => 7
+        userNumbers.add(inputNum / 10 % 10) // 10의 자리
+        userNumbers.add(inputNum % 10) // 1의 자리
+
+//        S 갯수, B 갯수 파악.
+        var strikeCount = 0
+        var ballCount = 0
 
     }
 
