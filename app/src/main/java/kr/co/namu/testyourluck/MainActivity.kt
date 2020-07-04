@@ -10,6 +10,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        lottoBtn.setOnClickListener {
+            val myIntent = Intent(this, LottoActivity::class.java)
+            startActivity(myIntent)
+        }
+
         lotsBtn.setOnClickListener {
             val myIntent = Intent(this, LotsActivity::class.java)
             startActivity(myIntent)
