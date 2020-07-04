@@ -3,6 +3,7 @@ package kr.co.namu.testyourluck
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_baseball.*
 import kr.co.namu.testyourluck.adapters.ChattingAdapter
 import kr.co.namu.testyourluck.datas.ChattingMessage
@@ -33,6 +34,30 @@ class BaseballActivity : AppCompatActivity() {
 
 //        문제 출제 기능 실행
         makeCpuNumbers()
+
+//        입력 버튼 누르면 이벤트 처리
+        okBtn.setOnClickListener {
+
+//            입력한 내용 확인
+            val input = inputNumberEdt.text.toString()
+
+//            3자리가 아니면 거부.
+            if (input.length != 3) {
+                Toast.makeText(this, "세자리 숫자로 입력해주세요.", Toast.LENGTH_SHORT).show()
+//                이 뒤는 실행 못하게 강제 종료.
+                return@setOnClickListener
+            }
+
+//            이 뒤로는 무조건 세자리 숫자라는게 확정된 상태.
+
+//            채팅 내용으로 띄워주기.
+            chattingMessageList.add(ChattingMessage("USER", input))
+
+//            어댑터가 새로 고침 해야 반영됨.
+            mChatAdapter.notifyDataSetChanged()
+
+
+        }
 
     }
 
