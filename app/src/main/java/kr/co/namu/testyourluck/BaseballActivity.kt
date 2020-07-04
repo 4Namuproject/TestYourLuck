@@ -136,29 +136,38 @@ class BaseballActivity : AppCompatActivity() {
 
         val cpuMessage = "${strikeCount}S ${ballCount}B 입니다."
 
-        chattingMessageList.add(ChattingMessage("CPU", cpuMessage))
+//        컴퓨터의 답장을 0.7초 후에 띄우도록
 
-        mChatAdapter.notifyDataSetChanged()
-        chattingListView.smoothScrollToPosition(chattingMessageList.size-1)
-
-//        만약 3S 라면, 정답이라는 메세지를 주고, 게임을 종료시키자.
-        if (strikeCount == 3) {
-            chattingMessageList.add(ChattingMessage("CPU", "정답입니다!"))
-
-//            몇번만에 맞췄는지도 컴퓨터가 이야기 해주자.
-            chattingMessageList.add(ChattingMessage("CPU", "${tryCount}회 만에 맞췄습니다."))
-
+        Handler().postDelayed({
+            chattingMessageList.add(ChattingMessage("CPU", cpuMessage))
             mChatAdapter.notifyDataSetChanged()
             chattingListView.smoothScrollToPosition(chattingMessageList.size-1)
+        }, 700)
+
+
+//        정답 체크 자체를 1.4초 후에 해서, 채팅이 이어지는것처럼 보이게 하자.
+        Handler().postDelayed({
+            //        만약 3S 라면, 정답이라는 메세지를 주고, 게임을 종료시키자.
+            if (strikeCount == 3) {
+                chattingMessageList.add(ChattingMessage("CPU", "정답입니다!"))
+
+//            몇번만에 맞췄는지도 컴퓨터가 이야기 해주자.
+                chattingMessageList.add(ChattingMessage("CPU", "${tryCount}회 만에 맞췄습니다."))
+
+                mChatAdapter.notifyDataSetChanged()
+                chattingListView.smoothScrollToPosition(chattingMessageList.size-1)
 
 //            입력을 못하게 막자. => enabled를 false로 비활성화.
-            inputNumberEdt.isEnabled = false
-            okBtn.isEnabled = false
+                inputNumberEdt.isEnabled = false
+                okBtn.isEnabled = false
 
 //            게임 종료 안내 메세지 토스트로
-            Toast.makeText(this, "이용해 주셔서 감사합니다.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "이용해 주셔서 감사합니다.", Toast.LENGTH_SHORT).show()
 
-        }
+            }
+
+        }, 1400)
+
 
     }
 
