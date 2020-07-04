@@ -56,6 +56,9 @@ class BaseballActivity : AppCompatActivity() {
 //            어댑터가 새로 고침 해야 반영됨.
             mChatAdapter.notifyDataSetChanged()
 
+//            리스트뷰를 바닥 (맨 마지막 채팅)으로 끌어내리기
+            chattingListView.smoothScrollToPosition(chattingMessageList.size-1)
+
 
         }
 
