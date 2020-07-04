@@ -5,6 +5,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/cpuLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -12,6 +13,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/cpuTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="컴퓨터가 말한 내용" />
@@ -19,6 +21,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/userLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="right"
@@ -26,6 +29,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/userTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="사람이 말한 내용" />
