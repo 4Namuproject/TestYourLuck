@@ -57,8 +57,14 @@ class BaseballActivity : AppCompatActivity() {
 //        입력 버튼 누르면 이벤트 처리
         okBtn.setOnClickListener {
 
+
 //            입력한 내용 확인
             val input = inputNumberEdt.text.toString()
+
+
+//            같은 값을 다시 넣을 일은 없다.
+//            입력되어있던 내용을 빈칸으로 변경
+            inputNumberEdt.setText("")
 
 //            3자리가 아니면 거부.
             if (input.length != 3) {
