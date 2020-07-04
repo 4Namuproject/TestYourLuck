@@ -75,6 +75,21 @@ class BaseballActivity : AppCompatActivity() {
 
 //            이 뒤로는 무조건 세자리 숫자라는게 확정된 상태.
 
+//            세자리 중에 중복된 숫자가 있다면 거부.
+//            입력값의 세자리를 추출 > 검사
+            val firstNum = input.toInt() / 100 // 100의자리
+            val secondNum = input.toInt() / 10 % 10 // 10의자리
+            val thirdNum = input.toInt() % 10 // 1의자리
+
+//            중복된 숫자가 있는지 확인 112 or 233 or 343
+            if (firstNum == secondNum || secondNum == thirdNum || thirdNum == firstNum) {
+//                중복된 값 불가 안내. 강제종료
+
+                Toast.makeText(this, "중복된 숫자는 입력할 수 없습니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+
+            }
+
 //            채팅 내용으로 띄워주기.
             chattingMessageList.add(ChattingMessage("USER", input))
 
