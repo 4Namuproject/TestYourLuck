@@ -2,6 +2,7 @@ package kr.co.namu.testyourluck
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_baseball.*
@@ -26,14 +27,29 @@ class BaseballActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_baseball)
 
-//        컴퓨터가 환영 메세지를 말함.
-        chattingMessageList.add(ChattingMessage("CPU", "숫자 야구 게임에 오신것을 환영합니다."))
-        chattingMessageList.add(ChattingMessage("CPU", "제가 생각하는 세자리 숫자를 맞춰주세요."))
-        chattingMessageList.add(ChattingMessage("CPU", "0은 없고, 중복된 숫자도 없습니다."))
-
 //        리스트뷰에 출력 (어댑터 연결)
         mChatAdapter = ChattingAdapter(this, R.layout.chatting_message_list_item, chattingMessageList)
         chattingListView.adapter = mChatAdapter
+
+//        컴퓨터가 환영 메세지를 말함.
+
+        Handler().postDelayed({
+//            일정 시간 이후에 실행할 내용
+            chattingMessageList.add(ChattingMessage("CPU", "숫자 야구 게임에 오신것을 환영합니다."))
+            mChatAdapter.notifyDataSetChanged()
+
+        }, 700)
+
+        Handler().postDelayed({
+            chattingMessageList.add(ChattingMessage("CPU", "제가 생각하는 세자리 숫자를 맞춰주세요."))
+            mChatAdapter.notifyDataSetChanged()
+        }, 1400)
+
+        Handler().postDelayed({
+            chattingMessageList.add(ChattingMessage("CPU", "0은 없고, 중복된 숫자도 없습니다."))
+            mChatAdapter.notifyDataSetChanged()
+        }, 2100)
+
 
 //        문제 출제 기능 실행
         makeCpuNumbers()
