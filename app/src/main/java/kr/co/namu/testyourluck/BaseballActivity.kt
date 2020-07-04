@@ -119,6 +119,20 @@ class BaseballActivity : AppCompatActivity() {
         mChatAdapter.notifyDataSetChanged()
         chattingListView.smoothScrollToPosition(chattingMessageList.size-1)
 
+//        만약 3S 라면, 정답이라는 메세지를 주고, 게임을 종료시키자.
+        if (strikeCount == 3) {
+            chattingMessageList.add(ChattingMessage("CPU", "정답입니다!"))
+            mChatAdapter.notifyDataSetChanged()
+            chattingListView.smoothScrollToPosition(chattingMessageList.size-1)
+
+//            입력을 못하게 막자. => enabled를 false로 비활성화.
+            inputNumberEdt.isEnabled = false
+            okBtn.isEnabled = false
+
+//            게임 종료 안내 메세지 토스트로
+            Toast.makeText(this, "이용해 주셔서 감사합니다.", Toast.LENGTH_SHORT).show()
+
+        }
 
     }
 
