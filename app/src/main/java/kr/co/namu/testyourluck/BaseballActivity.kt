@@ -10,6 +10,9 @@ import kr.co.namu.testyourluck.datas.ChattingMessage
 
 class BaseballActivity : AppCompatActivity() {
 
+//     몇번만에 정답을 맞췄는지 기록하기 위한 변수
+    var tryCount = 0
+
 //    문제로 나온 세자리 숫자를 저장할 배열
     val cpuNumbers = ArrayList<Int>()
 
@@ -71,6 +74,9 @@ class BaseballActivity : AppCompatActivity() {
 
     fun checkStrikeAndBall(inputString : String) {
 
+//        한번 시도 했다고, 시도 횟수를 증가.
+        tryCount++
+
 //        정답 : 741 => 입력 : 145 1S 1B
 //        입력값을 숫자로 바꾸자.
         val inputNum = inputString.toInt()
@@ -122,6 +128,10 @@ class BaseballActivity : AppCompatActivity() {
 //        만약 3S 라면, 정답이라는 메세지를 주고, 게임을 종료시키자.
         if (strikeCount == 3) {
             chattingMessageList.add(ChattingMessage("CPU", "정답입니다!"))
+
+//            몇번만에 맞췄는지도 컴퓨터가 이야기 해주자.
+            chattingMessageList.add(ChattingMessage("CPU", "${tryCount}회 만에 맞췄습니다."))
+
             mChatAdapter.notifyDataSetChanged()
             chattingListView.smoothScrollToPosition(chattingMessageList.size-1)
 
