@@ -3,6 +3,7 @@ package kr.co.namu.testyourluck
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_lotto.*
 import java.util.*
@@ -19,6 +20,9 @@ class LottoActivity : AppCompatActivity() {
     //    보너스 번호를 저장하는 변수
     var winBonusNum = 0
 
+//    내 번호 6개 EditText를 담고 있는 목록
+    val myNumEdtList = ArrayList<EditText>()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lotto)
@@ -30,6 +34,14 @@ class LottoActivity : AppCompatActivity() {
         lottoNumTxtList.add(lottoNumTxt04)
         lottoNumTxtList.add(lottoNumTxt05)
         lottoNumTxtList.add(lottoNumTxt06)
+
+//        내 번호 에딧텍스트 6개를 목록에 추가
+        myNumEdtList.add(myNumEdt01)
+        myNumEdtList.add(myNumEdt02)
+        myNumEdtList.add(myNumEdt03)
+        myNumEdtList.add(myNumEdt04)
+        myNumEdtList.add(myNumEdt05)
+        myNumEdtList.add(myNumEdt06)
 
 //        한장 구매하기 버튼 눌리면
         buyOneLottoBtn.setOnClickListener {
@@ -122,6 +134,57 @@ class LottoActivity : AppCompatActivity() {
         }
 
         bonusNumTxt.text = winBonusNum.toString()
+
+//        등수 계산 기능 실행
+        getMyRank()
+    }
+
+//    내 번호와, 당첨 번호를 비교해서 몇등인지 계산해주는 함수
+
+    fun getMyRank() {
+
+//        맞춘 숫자가 몇개인지 저장할 변수
+        var correctNumCount = 0
+
+//        당첨 번호를 바꿔가면서 (하나씩 꺼내서) 확인
+        for (winNum in winNumList) {
+
+//            내 번호와 (하나씩 꺼내서) 비교하자.
+            for (myNumEdt in myNumEdtList) {
+
+//                내 당첨번호 입력 칸에 적힌 문자를 => Int로 변환 (비교해야되니까)
+                val myNum = myNumEdt.text.toString().toInt()
+
+//                같은 숫자 하나 발견
+                if (myNum == winNum) {
+
+//                    맞춘 숫자 갯수 하나 증가
+                    correctNumCount++
+                }
+
+            }
+
+        }
+
+//        맞춘 갯수에 따라 등수 판단
+        if (correctNumCount == 6) {
+            Log.d("등수", "1등")
+        }
+        else if (correctNumCount == 5) {
+//            보너스를 맞췄으면 2등, 아니면 3등
+            Log.d("등수", "2등 아니면 3등")
+        }
+        else if (correctNumCount == 4) {
+            Log.d("등수", "4등")
+        }
+        else if (correctNumCount == 3) {
+            Log.d("등수", "5등")
+        }
+        else {
+            Log.d("등수", "꽝")
+        }
+
+
     }
 
 }
