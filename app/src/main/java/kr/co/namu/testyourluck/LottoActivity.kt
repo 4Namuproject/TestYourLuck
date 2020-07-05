@@ -2,6 +2,7 @@ package kr.co.namu.testyourluck
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.EditText
 import android.widget.TextView
@@ -35,6 +36,29 @@ class LottoActivity : AppCompatActivity() {
     var useMoney = 0L
     var winMoney = 0L
 
+//    반복을 돌려주는 핸들러
+    val myHandler = Handler()
+
+//    핸들러가 수행해줄 일
+
+    val myRunnable = object : Runnable {
+        override fun run() {
+
+            if (useMoney < 10000000) {
+
+                makeWinNumbers()
+                buyLottoLoop()
+
+            }
+
+        }
+
+    }
+
+    fun buyLottoLoop() {
+        myHandler.post(myRunnable)
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +84,13 @@ class LottoActivity : AppCompatActivity() {
         buyOneLottoBtn.setOnClickListener {
 
             makeWinNumbers()
+
+        }
+
+//        자동 구매하기 버튼이 눌리면
+        autoLottoBtn.setOnClickListener {
+
+            buyLottoLoop()
 
         }
 
