@@ -31,6 +31,10 @@ class LottoActivity : AppCompatActivity() {
     var fifthRankCount = 0
     var unRankCount = 0
 
+//    사용 금액과, 당첨 금액을 저장할 변수
+    var useMoney = 0L
+    var winMoney = 0L
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -67,6 +71,10 @@ class LottoActivity : AppCompatActivity() {
 //    당첨번호 만드는 코드를 모아둔 함수
 
     fun makeWinNumbers() {
+
+//        천원을 썼다고 계산
+        useMoney += 1000
+
         //            랜덤으로 1~45 숫자를 뽑아서 => 6개 텍스트뷰에 반영
 
 //            이미 뽑아둔 번호가 있다면 전부 삭제
@@ -184,6 +192,10 @@ class LottoActivity : AppCompatActivity() {
 //            텍스트뷰에도 반영
             firstRankCountTxt.text = "1등 : ${firstRankCount}회"
 
+
+//            당첨금액을 12억원 증가
+            winMoney += 1200000000
+
         }
         else if (correctNumCount == 5) {
 
@@ -208,11 +220,18 @@ class LottoActivity : AppCompatActivity() {
                 secondRankCount++
                 secondRankCountTxt.text = "2등 : ${secondRankCount}회"
 
+//                4천만원 추가
+                winMoney += 40000000
+
             }
             else {
                 Log.d("등수", "3등")
                 thirdRankCount++
                 thirdRankCountTxt.text = "3등 : ${thirdRankCount}회"
+
+//                150만원 추가
+                winMoney += 1500000
+
             }
 
         }
@@ -220,18 +239,30 @@ class LottoActivity : AppCompatActivity() {
             Log.d("등수", "4등")
             fourthRankCount++
             fourthRankCountTxt.text = "4등 : ${fourthRankCount}회"
+
+//            5만원 추가
+            winMoney += 50000
+
         }
         else if (correctNumCount == 3) {
             Log.d("등수", "5등")
 
             fifthRankCount++
             fifthRankCountTxt.text = "5등 : ${fifthRankCount}회"
+
+//            사용 금액을 5천원 줄이자.
+            useMoney -= 5000
+
         }
         else {
             Log.d("등수", "꽝")
             unRankCount++
             unRankedCountTxt.text = "낙첨 : ${unRankCount}회"
         }
+
+//        사용 금액과, 당첨 금액을 갱신.
+        useMoneyTxt.text = String.format("사용 금액 : %,d원", useMoney)
+        winMoneyTxt.text = String.format("당첨 금액 : %,d원", winMoney)
 
 
     }
