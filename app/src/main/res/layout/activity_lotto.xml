@@ -81,11 +81,111 @@
 
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="내 번호" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/myNumEdt01"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text="5"
+            android:gravity="center" />
+
+        <EditText
+            android:id="@+id/myNumEdt02"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text="14"
+            android:gravity="center" />
+
+        <EditText
+            android:id="@+id/myNumEdt03"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text="20"
+            android:gravity="center" />
+
+        <EditText
+
+            android:id="@+id/myNumEdt04"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text="34"
+            android:gravity="center" />
+
+        <EditText
+            android:id="@+id/myNumEdt05"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text="40"
+            android:gravity="center" />
+
+        <EditText
+            android:id="@+id/myNumEdt06"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:text="43"
+            android:gravity="center" />
+
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/buyOneLottoBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="로또 한장 구매하기" />
+
+
+    <TextView
+        android:id="@+id/firstRankCountTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1등 : 0회" />
+
+    <TextView
+        android:id="@+id/secondRankCountTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="2등 : 0회" />
+
+    <TextView
+        android:id="@+id/thirdRankCountTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="3등 : 0회" />
+
+    <TextView
+        android:id="@+id/fourthRankCountTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="4등 : 0회" />
+
+    <TextView
+        android:id="@+id/fifthRankCountTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="5등 : 0회" />
+
+    <TextView
+        android:id="@+id/unRankedCountTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="낙첨 : 0회" />
+
 
 
 </LinearLayout>

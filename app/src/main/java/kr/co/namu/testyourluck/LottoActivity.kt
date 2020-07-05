@@ -40,6 +40,7 @@ class LottoActivity : AppCompatActivity() {
 
     }
 
+//
 
 
 //    당첨번호 만드는 코드를 모아둔 함수
