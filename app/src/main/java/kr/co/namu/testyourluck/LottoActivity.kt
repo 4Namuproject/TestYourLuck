@@ -16,6 +16,9 @@ class LottoActivity : AppCompatActivity() {
 //    당첨 번호 6개 (Int)를 담고 있는 목록
     val winNumList = ArrayList<Int>()
 
+//    보너스 번호를 저장하는 변수
+    var winBonusNum = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lotto)
@@ -82,6 +85,30 @@ class LottoActivity : AppCompatActivity() {
 
             }
 
+//            보너스번호를 뽑아서 반영
+//            1~45를 랜덤으로 추출 => 당첨번호와 중복 검사 => 통과하면 반영
+
+            while (true) {
+//                1~45 랜덤 추출
+                val randomNum = (Math.random() * 45 + 1).toInt()
+
+//                중복 검사 로직
+                var duplCheckResult = true
+                for (num in winNumList) {
+                    if (randomNum == num) {
+                        duplCheckResult = false
+                    }
+                }
+
+//                중복검사 통과시 보너스 번호로 선정
+                if (duplCheckResult) {
+                    winBonusNum = randomNum
+                    break
+                }
+
+            }
+
+            bonusNumTxt.text = winBonusNum.toString()
 
         }
 
