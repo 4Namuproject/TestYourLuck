@@ -23,6 +23,15 @@ class LottoActivity : AppCompatActivity() {
 //    내 번호 6개 EditText를 담고 있는 목록
     val myNumEdtList = ArrayList<EditText>()
 
+//    각 등수별 당첨 횟수를 기록할 변수
+    var firstRankCount = 0
+    var secondRankCount = 0
+    var thirdRankCount = 0
+    var fourthRankCount = 0
+    var fifthRankCount = 0
+    var unRankCount = 0
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_lotto)
@@ -169,10 +178,14 @@ class LottoActivity : AppCompatActivity() {
 //        맞춘 갯수에 따라 등수 판단
         if (correctNumCount == 6) {
             Log.d("등수", "1등")
+
+//            1등 당첨횟수 증가
+            firstRankCount++
+//            텍스트뷰에도 반영
+            firstRankCountTxt.text = "1등 : ${firstRankCount}회"
+
         }
         else if (correctNumCount == 5) {
-//            보너스를 맞췄으면 2등, 아니면 3등
-            Log.d("등수", "2등 아니면 3등")
 
 //            보너스 번호를 들고 내 번호들과 검사.
 //            같은게 있다면 2등, 아니면 3등
@@ -191,20 +204,33 @@ class LottoActivity : AppCompatActivity() {
 //            보너스번호 여부에 따라 등수 판정
             if (isBonusNumCorrect) {
                 Log.d("등수", "2등")
+
+                secondRankCount++
+                secondRankCountTxt.text = "2등 : ${secondRankCount}회"
+
             }
             else {
                 Log.d("등수", "3등")
+                thirdRankCount++
+                thirdRankCountTxt.text = "3등 : ${thirdRankCount}회"
             }
 
         }
         else if (correctNumCount == 4) {
             Log.d("등수", "4등")
+            fourthRankCount++
+            fourthRankCountTxt.text = "4등 : ${fourthRankCount}회"
         }
         else if (correctNumCount == 3) {
             Log.d("등수", "5등")
+
+            fifthRankCount++
+            fifthRankCountTxt.text = "5등 : ${fifthRankCount}회"
         }
         else {
             Log.d("등수", "꽝")
+            unRankCount++
+            unRankedCountTxt.text = "낙첨 : ${unRankCount}회"
         }
 
 
