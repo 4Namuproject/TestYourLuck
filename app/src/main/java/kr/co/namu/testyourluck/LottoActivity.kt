@@ -173,6 +173,29 @@ class LottoActivity : AppCompatActivity() {
         else if (correctNumCount == 5) {
 //            보너스를 맞췄으면 2등, 아니면 3등
             Log.d("등수", "2등 아니면 3등")
+
+//            보너스 번호를 들고 내 번호들과 검사.
+//            같은게 있다면 2등, 아니면 3등
+
+            var isBonusNumCorrect = false
+            for (myNumEdt in myNumEdtList) {
+//                내 입력값을 int로 변환
+                val myNum = myNumEdt.text.toString().toInt()
+
+//                보너스 번호와 같은지
+                if (myNum == winBonusNum) {
+                    isBonusNumCorrect = true
+                }
+            }
+
+//            보너스번호 여부에 따라 등수 판정
+            if (isBonusNumCorrect) {
+                Log.d("등수", "2등")
+            }
+            else {
+                Log.d("등수", "3등")
+            }
+
         }
         else if (correctNumCount == 4) {
             Log.d("등수", "4등")
