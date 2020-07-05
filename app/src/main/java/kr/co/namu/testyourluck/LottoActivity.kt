@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import kotlinx.android.synthetic.main.activity_lotto.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 class LottoActivity : AppCompatActivity() {
 
@@ -65,10 +67,21 @@ class LottoActivity : AppCompatActivity() {
 
             }
 
-//            실제 뽑힌 번호들 확인
-            for (num in winNumList) {
-                Log.d("당첨번호", num.toString())
+//            당첨번호를 작은 수 부터 정렬
+            Collections.sort(winNumList)
+
+//            실제로 텍스트뷰에 뽑힌 번호 반영
+            for (i in winNumList.indices) {
+//                1~6번 텍스트뷰 가져오기
+                val lottoTxt = lottoNumTxtList[i]
+
+//                당첨번호도 상황에 맞게 가져오기
+                val winNum = winNumList[i]
+
+                lottoTxt.text = winNum.toString()
+
             }
+
 
         }
 
